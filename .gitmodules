@@ -1,6 +1,7 @@
-[submodule "ble/ble-polar-direct"]
-	path = ble/ble-polar-direct
-	url = C:\\Users\\Robert\\Documents\\clarkecenter\\ble\\ble-polar-direct
 [submodule "lsl/flow-lsl-interface"]
 	path = lsl/flow-lsl-interface
-	url = C:\\Users\\Robert\\Documents\\clarkecenter\\lsl\\flow-lsl-interface
+	url = https://bitbucket.org/xianhaic/flow-liblsl-interface/
+
+[submodule "ble"]
+	path = ble
+	url = https://bitbucket.org/rtwomey/ble-polar-direct/
