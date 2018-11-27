@@ -46,14 +46,23 @@ def test_Client(host, port):
     print("Connected to %s:%d" % (host, port))
 
     if PortConfigurable == port:
+        # xml_string = \
+        #     "<?xml version=\"1.0\"?>" \
+        #     "<configurable>" \
+        #     "<preview><Gq/></preview><sensor><a/></sensor>" \
+        #     "</configurable>"
+
+        # this data string is copied from the ShadowStream.cs Unity example, 
+        # it is what is used for their rigged skeleton in Unity.
         xml_string = \
             "<?xml version=\"1.0\"?>" \
-            "<configurable>" \
-            "<preview><Gq/></preview><sensor><a/></sensor>" \
+            "<configurable inactive=\"1\">" \
+            "<Lq/><c/>" \
             "</configurable>"
 
         if client.writeData(xml_string):
             print("Sent active channel definition to Configurable service")
+
 
     if client.waitForData():
         sample_count = 0

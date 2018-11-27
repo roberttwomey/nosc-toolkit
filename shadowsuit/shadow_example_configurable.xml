@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Enumerates all available channels from the Motion Service configurable data stream. It is not required to enumerate all channels in your client definition. The hierarchy in this example file illustrates which channels are activated by which parent node. The <all> node denotes that all child channels are enabled. Its children, <preview>, <sensor>, and <raw> in turn denote that all child channels are enabled. <Gq> enables <Gqw>, <Gqx>, <Gqy>, and <Gqz> All real valued elements specified in IEEE-754 single precision binary floating point format (binary32), little-endian byte order. All integral value elements specified in 16-bit signed integer two's complement format (short), little endian byte order. @file tools/configurable.xml @author Luke Tokheim, luke@motionnode.com @version 2.2 (C) Copyright Motion Workshop 2015. All rights reserved. The coded instructions, statements, computer programs, and/or related material (collectively the "Data") in these files contain unpublished information proprietary to Motion Workshop, which is protected by US federal copyright law and by international treaties. The Data may not be disclosed or distributed to third parties, in whole or in part, without the prior written consent of Motion Workshop. The Data is provided "as is" without express or implied warranty, and with no claim as to its suitability for any purpose. -->
+<!-- Root element with preferences defined as attributes. stride: Skip frames to slow data rate handled by client. For example, set stride="2" to halve the frame rate exported to the client. full: Full data stream read direct from hardware device to client. Set to "1" to enable full mode. The default data stream will drop samples if the client falls behind to preserve the hardware connection. inactive: Read back data for all nodes in the configuration, even if they are not associated with an actual sensor. Set to "1" to enable inactive mode. This is intended for clients that want to access interpolated node orientations or positions for every node. -->
+<configurable inactive="0" full="0" stride="0">
+<all>
+<!-- Preview class data. Orientation and other computed outputs. -->
+<preview>
+<!-- Global quaternion. -->
+<Gq>
+<w/>
+<x/>
+<y/>
+<z/>
+</Gq>
+<!-- Global quaternion derivative. -->
+<Gdq>
+<w/>
+<x/>
+<y/>
+<z/>
+</Gdq>
+<!-- Local quaternion. -->
+<Lq>
+<w/>
+<x/>
+<y/>
+<z/>
+</Lq>
+<!-- Euler angle set. X-Y-Z rotation order. -->
+<r>
+<x/>
+<y/>
+<z/>
+</r>
+<!-- Linear acceleration estimate. -->
+<la>
+<x/>
+<y/>
+<z/>
+</la>
+<!-- Linear velocity estimate. Shadow plugin only. -->
+<lv>
+<x/>
+<y/>
+<z/>
+</lv>
+<!-- Linear translation estimate. Shadow plugin only. -->
+<lt>
+<x/>
+<y/>
+<z/>
+</lt>
+<!-- Position contraint with unit weight. Shadow plugin only. -->
+<c>
+<w/>
+<x/>
+<y/>
+<z/>
+</c>
+</preview>
+<!-- Sensor class data. Calibrated measurements from the onboard sensors. -->
+<sensor>
+<!-- Accelerometer. Specified in g. -->
+<a>
+<x/>
+<y/>
+<z/>
+</a>
+<!-- Magnetometer. Specified in microtesla. -->
+<m>
+<x/>
+<y/>
+<z/>
+</m>
+<!-- Gyroscope. Specified in degree/second. -->
+<g>
+<x/>
+<y/>
+<z/>
+</g>
+<!-- Temperature. Specified in degrees Celsius. -->
+<temp/>
+</sensor>
+<!-- Raw class data. Unprocessed integer measurements from the onboard sensors. -->
+<raw>
+<!-- Accelerometer. In range [-16383, 16383]. -->
+<A>
+<x/>
+<y/>
+<z/>
+</A>
+<!-- Magnetometer. In range [-2047, 2047]. -->
+<M>
+<x/>
+<y/>
+<z/>
+</M>
+<!-- Gyroscope. In range [-32767, 32767]. -->
+<G>
+<x/>
+<y/>
+<z/>
+</G>
+<!-- Temperature. In range [-16383, 16383]. -->
+<Temp/>
+</raw>
+<!-- Time data. -->
+<time>
+<!-- Time step. Specified in seconds. -->
+<dt/>
+<!-- Packet time. Specified in seconds since start, based on sample count. -->
+<timestamp/>
+<!-- System time. Specified in seconds since start, based on system clock. -->
+<systemtime/>
+</time>
+<!-- Error metrics. Specified as unitless scalar values. 0 denotes no error and 1 denotes a lot of error. -->
+<error>
+<!-- Accelerometer measurement error. -->
+<ea/>
+<!-- Magnetometer measurement error. -->
+<em/>
+<!-- Gyroscope measurement error. -->
+<eg/>
+<!-- Quaternion orientation error. -->
+<eq/>
+<!-- Positional constraint error. Shadow plugin only. -->
+<ec/>
+</error>
+</all>
+</configurable>
