@@ -2,14 +2,14 @@
 	path = lsl/flow-lsl-interface
 	url = https://bitbucket.org/xianhaic/flow-liblsl-interface/
 
-[submodule "ble/ble-polar-direct"]
-	path = ble/ble-polar-direct
-	url = https://bitbucket.org/rtwomey/ble-polar-direct/
-
-[submodule "shadowsuit/sdk"]
-	path = shadowsuit/sdk
-	url = https://github.com/motion-workshop/sdk
-
 [submodule "unity/unity-lsl-test/unity LSL test/Assets/LSL4Unity"]
 	path = "unity/unity-lsl-test/unity LSL test/Assets/LSL4Unity"
 	url = https://github.com/xfleckx/LSL4Unity
+	
+[submodule "ble/ble-polar-direct"]
+	path = ble/ble-polar-direct
+	url = https://bitbucket.org/rtwomey/ble-polar-direct/
+	
+[submodule "shadowsuit/sdk"]
+	path = shadowsuit/sdk
+	url = https://github.com/motion-workshop/sdk
