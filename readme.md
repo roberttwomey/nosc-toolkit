@@ -44,7 +44,7 @@ Start the Shadow desktop app. (Called "Shadow")
 
 Put on the Shadow Suit and power it on. (See the video tutorial [here](https://www.motionshadow.com/setup))
 
-Once the indicator light is pulsing a slow blue, connect to the available ```Shadow1``` WiFi network from your laptop. In the Shadow app you should see the live skeleton.
+Once the indicator light is pulsing a slow blue, connect to the available ```Shadow1``` WiFi network from your laptop. (SSID: "Shadow1", pwd: 2062012708). In the Shadow app you should see the live skeleton.
 
 Open the git bash application. 
 
