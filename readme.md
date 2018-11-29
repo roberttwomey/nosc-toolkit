@@ -74,9 +74,9 @@ Use the "Start" and "Stop" buttons under Recording Control to make your recordin
 
 When you are finished recording, you can quit out of all of the oustream softwares started above. Check your recordings using the ```gui.py``` software below.
 
-## Browse your Recorded Data
+## Preview your Recorded Data
 
-Our main software for browsing the recorded data is ```gui.py``` found in [lsl/flow-lsl-interface](lsl/flow-lsl-interface)
+Our main software for previewing the recorded data is ```gui.py``` found in [lsl/flow-lsl-interface](lsl/flow-lsl-interface)
 
 Run the program from git bash. From the [lsl/flow-lsl-interface](lsl/flow-lsl-interface) directory, run:
 
@@ -89,9 +89,15 @@ Replace ```your_data_file.xdf``` with the name of the file you wish to preview.
 
 Coming soon. 
 
-## Live Stream LSL Data to Unity
+## Visualize Data in Unity
 
-Coming soon. 
+More coming soon. For now we have very preliminary visualization in Unity. 
+
+### Shadow/MoCap Data In Unity
+
+Start the shadow software. Wear the shadow suit. Connect to the shadow network. 
+
+Open the [unity/shadow-unity-test] 
 
 ## Initial Setup
 

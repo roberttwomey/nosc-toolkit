@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/LSL4Unity/Demos/Demo_IncomingStreams.unity
-  isLoaded: 1
-  isActive: 1
