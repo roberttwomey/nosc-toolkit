@@ -20,7 +20,9 @@ Data are visualized in Unity.
 
 Assumes you have done all software setup below. 
 
-0. Start the LabRecorder app.
+### Start the LabRecorder app.
+
+Run the LabRecorder app. 
 
 After starting each of the individual data streams below, hit "update" in the LabRecorder "Record from Streams" window to refresh to list of available data streams. 
 
