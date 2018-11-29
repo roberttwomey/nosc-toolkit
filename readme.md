@@ -12,7 +12,7 @@ Currently this project interfaces with the following sensors:
 * webcam (reference video)
 * breath
 
-Data is captured using the LabRecorder from the [Lab Streaming Layer](https://github.com/sccn/labstreaminglayer) project.
+Data is captured using LabRecorder from the [Lab Streaming Layer](https://github.com/sccn/labstreaminglayer) project.
 
 Data are visualized in Unity. 
 
@@ -20,10 +20,80 @@ Data are visualized in Unity.
 
 Assumes you have done all software setup below. 
 
+0. Start the LabRecorder app.
 
-## Software Setup Setup
+After starting each of the individual data streams below, hit "update" in the LabRecorder "Record from Streams" window to refresh to list of available data streams. 
 
-1. Install the Shadow Suit software (Motion)
+### Capture from Muse EEG
+
+Pair the Muse with your computer, wear the device, and start the oustream software. 
+
+In a command prompt, run: [muse/StreamLSLMuseData.bat](muse/StreamLSLMuseData.bat)
+
+### Capture from Polar HR/HVR device
+
+Put on the Polar H10 monitor and start the data outstream software. 
+
+In a command prompt, run: [ble/ble-polar-direct/BLEConsole/bin/Debug/BLEConsole.exe](ble/ble-polar-direct/BLEConsole/bin/Debug/BLEConsole.exe)
+
+### Capture from Shadow Suit
+
+Put on the Shadow Suit and power it on. 
+
+Once the indicator light is pulsing a slow blue, connect to the available ```Shadow1``` WiFi network from your laptop. 
+
+In git bash, run the shadow outstream software. 
+
+From the [lsl/flow-lsl-interface](lsl/flow-lsl-interface) directory in git bash, run:
+```
+python outstream_shadowsuit.py
+```
+
+### Capture from Webcam
+
+Plug in the webcam to your USB port.
+
+In git bash, run the webcam oustream software.
+
+From the [lsl/flow-lsl-interface](lsl/flow-lsl-interface) directory in git bash, run:
+```
+python oustream_webcam.py
+```
+
+### Record with Lab Recorder
+
+If you now update the lis of available streams in labrecorder, you should see the Polar, Muse, Webcam, and Mocap/Shadow Suit. Click the checkbox next to each of these you wish to record to. 
+
+Set a storage location for your data using the "Browse" button. I suggest using the [data/](data/) directory. Give your file/take a meaningful name.  
+
+Use the "Start" and "Stop" buttons under Recording Control to make your recordings.
+
+### Cleanup
+
+When you are finished recording, you can quit out of all of the oustream softwares started above. Check your recordings using the ```gui.py``` software below.
+
+## Browse your Recorded Data
+
+Our main software for browsing the recorded data is ```gui.py``` found in [lsl/flow-lsl-interface](lsl/flow-lsl-interface)
+
+Run the program from git bash. From the [lsl/flow-lsl-interface](lsl/flow-lsl-interface) directory, run:
+
+```
+python gui.py your_data_file.xdf
+```
+Replace ```your_data_file.xdf``` with the name of the file you wish to preview.
+
+## Playback LSL Data to Unity
+
+Coming soon. 
+
+## Live Stream LSL Data to Unity
+
+Coming soon. 
+
+## Initial Setup
+
+### Install the Shadow Suit software (Motion)
 
 download and install:
 
