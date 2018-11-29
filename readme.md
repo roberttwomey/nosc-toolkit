@@ -40,8 +40,7 @@ In a command prompt, run: [ble/ble-polar-direct/BLEPolarDirect/bin/Debug/BLEPola
 
 ### Capture from Shadow Suit
 
-Put on the Shadow Suit and power it on. (See the video tutorial [here](https://www.motionshadow.com/quick-start-tutorial
-)
+Put on the Shadow Suit and power it on. (See the video tutorial [here](https://www.motionshadow.com/setup))
 
 Once the indicator light is pulsing a slow blue, connect to the available ```Shadow1``` WiFi network from your laptop. 
 
@@ -148,9 +147,7 @@ Download and install:
 
 #### How to Wear the Shadow Suit
 
-[https://www.motionshadow.com/quick-start-tutorial](https://www.motionshadow.com/quick-start-tutorial
-)
-
+For help on how to put on the shadow suit, see the video tutorial [here](https://www.motionshadow.com/setup)).
 
 ### Install LabRecorder
 
