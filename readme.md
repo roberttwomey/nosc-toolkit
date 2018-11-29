@@ -40,9 +40,11 @@ In a command prompt, run: [ble/ble-polar-direct/BLEPolarDirect/bin/Debug/BLEPola
 
 ### Capture from Shadow Suit
 
+Start the Shadow desktop app. (Called "Shadow")
+
 Put on the Shadow Suit and power it on. (See the video tutorial [here](https://www.motionshadow.com/setup))
 
-Once the indicator light is pulsing a slow blue, connect to the available ```Shadow1``` WiFi network from your laptop. 
+Once the indicator light is pulsing a slow blue, connect to the available ```Shadow1``` WiFi network from your laptop. In the Shadow app you should see the live skeleton.
 
 Open the git bash application. 
 
@@ -98,7 +100,7 @@ More coming soon. For now we have very preliminary visualization in Unity.
 
 ### Shadow/MoCap Data in Unity
 
-Start the shadow software. Wear the shadow suit. Connect your laptop to the shadow WiFi network. You should see the shadow suit in the shadow software.
+Start the Shadow desktop app. Wear the shadow suit. Connect your laptop to the shadow WiFi network. You should see the shadow suit in the shadow software.
 
 With Unity, open the [unity/shadow-unity-test](unity/shadow-unity-test) project. 
 
@@ -141,7 +143,7 @@ Pair the Muse headset:
 
 ### Install the Shadow Suit software (Motion)
 
-Download and install:
+Download and install the Shadow desktop app. 
 
 [https://www.motionshadow.com/software/5753105639538688](https://www.motionshadow.com/software/5753105639538688)
 
