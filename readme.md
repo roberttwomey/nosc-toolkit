@@ -93,11 +93,25 @@ Coming soon.
 
 More coming soon. For now we have very preliminary visualization in Unity. 
 
-### Shadow/MoCap Data In Unity
+### Shadow/MoCap Data in Unity
 
-Start the shadow software. Wear the shadow suit. Connect to the shadow network. 
+Start the shadow software. Wear the shadow suit. Connect your laptop to the shadow WiFi network. You should see the shadow suit in the shadow software.
 
-Open the [unity/shadow-unity-test] 
+With Unity, open the [unity/shadow-unity-test](unity/shadow-unity-test) project. 
+
+Play **SampleScene**. 
+
+You should see the rigged skeleton follow the motions of your shadow suit.
+
+### LSL Data in Unity
+
+Wear the Polar sensor and start the BLEPolarDirect program. 
+
+With Unity, open the [unity/unity%20LSL%20test](unity/unity%20LSL%20test) project. 
+
+Play the **lsl to unity test** scene. 
+
+The floating text panel in the scene should show the current polar readings. 
 
 ## Initial Setup
 
