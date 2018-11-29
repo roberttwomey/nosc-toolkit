@@ -44,9 +44,12 @@ Put on the Shadow Suit and power it on.
 
 Once the indicator light is pulsing a slow blue, connect to the available ```Shadow1``` WiFi network from your laptop. 
 
-In git bash, run the shadow outstream software. 
+Open the git bash application. 
 
-From the [lsl/flow-lsl-interface](lsl/flow-lsl-interface) directory in git bash, run:
+Change to the nosc project directory, and navigate to [lsl/flow-lsl-interface](lsl/flow-lsl-interface). 
+
+Run the outstream shadowsuit software:
+
 ```
 python outstream_shadowsuit.py
 ```
@@ -55,9 +58,12 @@ python outstream_shadowsuit.py
 
 Plug in the webcam to your USB port.
 
-In git bash, run the webcam outstream software.
+Open the git bash application. 
 
-From the [lsl/flow-lsl-interface](lsl/flow-lsl-interface) directory in git bash, run:
+Change to the nosc project directory, and navigate to [lsl/flow-lsl-interface](lsl/flow-lsl-interface). 
+
+Run the oustream webcam software:
+
 ```
 python outstream_webcam.py
 ```
