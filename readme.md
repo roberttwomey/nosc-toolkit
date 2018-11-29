@@ -85,11 +85,8 @@ python gui.py your_data_file.xdf
 ```
 Replace ```your_data_file.xdf``` with the name of the file you wish to preview.
 
-## Playback LSL Data to Unity
 
-Coming soon. 
-
-## Visualize Data in Unity
+## Live Stream  Data in Unity
 
 More coming soon. For now we have very preliminary visualization in Unity. 
 
@@ -112,6 +109,10 @@ With Unity, open the [unity/unity%20LSL%20test](unity/unity%20LSL%20test) projec
 Play the **lsl to unity test** scene. 
 
 The floating text panel in the scene should show the current polar readings. 
+
+## Playback LSL Data to Unity
+
+Coming soon.
 
 ## Initial Setup
 
