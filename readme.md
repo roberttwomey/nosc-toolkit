@@ -36,7 +36,7 @@ In a command prompt, run: [muse/StreamLSLMuseData.bat](muse/StreamLSLMuseData.ba
 
 Put on the Polar H10 monitor and start the data outstream software. 
 
-In a command prompt, run: [ble/ble-polar-direct/BLEConsole/bin/Debug/BLEConsole.exe](ble/ble-polar-direct/BLEConsole/bin/Debug/BLEConsole.exe)
+In a command prompt, run: [ble/ble-polar-direct/BLEPolarDirect/bin/Debug/BLEPilarDirect.exe](ble/ble-polar-direct/BLEPolarDirect/bin/Debug/BLEPolarDirect.exe)
 
 ### Capture from Shadow Suit
 
@@ -95,15 +95,32 @@ Coming soon.
 
 ## Initial Setup
 
+### Install the Muse-IO software
+
+Download the Muse SDK:
+
+[http://storage.googleapis.com/ix_downloads/musesdk-3.4.1/musesdk-3.4.1-windows-installer.exe](http://storage.googleapis.com/ix_downloads/musesdk-3.4.1/musesdk-3.4.1-windows-installer.exe)
+
+or on Khan: 
+
+[Khan\Assembly\Dependencies\musesdk-3.4.1-windows-installer.exe](
+Khan\Assembly\Dependencies\musesdk-3.4.1-windows-installer.exe)
+
+Pair the Muse headset:
+
+* Hold Muse On button for 6 seconds.
+* Open Control Panel --> Add A device
+* Choose yes that you see the pairing code.
+
 ### Install the Shadow Suit software (Motion)
 
-download and install:
+Download and install:
 
 [https://www.motionshadow.com/software/5753105639538688](https://www.motionshadow.com/software/5753105639538688)
 
 ### Install LabRecorder
 
-download LabRecorder-1.13.zip from here: 
+Download LabRecorder-1.13.zip from here: 
 
 [ftp://sccn.ucsd.edu/pub/software/LSL/Apps/](ftp://sccn.ucsd.edu/pub/software/LSL/Apps/)
 

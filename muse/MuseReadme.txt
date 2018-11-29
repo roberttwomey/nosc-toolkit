@@ -22,7 +22,7 @@ Normal Usage
 2. Connect to Muse
 	Run StreamLSLMuseData.bat
 
-3. Run LabRecorder, or Unity, or whatever endpoint client you want to use the Muse.
+3. Run LabRecorder, Unity, or whatever endpoint client you want to use the Muse.
 
 
 
