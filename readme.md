@@ -36,7 +36,7 @@ In a command prompt, run: [muse/StreamLSLMuseData.bat](muse/StreamLSLMuseData.ba
 
 Put on the Polar H10 monitor and start the data outstream software. 
 
-In a command prompt, run: [ble/ble-polar-direct/BLEPolarDirect/bin/Debug/BLEPilarDirect.exe](ble/ble-polar-direct/BLEPolarDirect/bin/Debug/BLEPolarDirect.exe)
+In a command prompt, run: [ble/ble-polar-direct/BLEPolarDirect/bin/Debug/BLEPolarDirect.exe](ble/ble-polar-direct/BLEPolarDirect/bin/Debug/BLEPolarDirect.exe)
 
 ### Capture from Shadow Suit
 
@@ -55,11 +55,11 @@ python outstream_shadowsuit.py
 
 Plug in the webcam to your USB port.
 
-In git bash, run the webcam oustream software.
+In git bash, run the webcam outstream software.
 
 From the [lsl/flow-lsl-interface](lsl/flow-lsl-interface) directory in git bash, run:
 ```
-python oustream_webcam.py
+python outstream_webcam.py
 ```
 
 ### Record with Lab Recorder
