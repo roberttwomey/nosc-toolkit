@@ -76,8 +76,13 @@ def main(argv):
     sample_size = 8
 
     stream_info_mocap = StreamInfo('ShadowSuit', 'MOCAP', mocap_channels * sample_size, 200)
-    # channels = stream_info_mocap.desc().append_child("channels")
-    # channels.append_child('rr')
+    channels = stream_info_mocap.desc().append_child("channels")
+    
+    channel_list = ["lq0", "lq1", "lq2", "lq3",
+        "c0", "c1", "c2", "c3"]
+
+    for c in channel_list:
+        channels.append_child(c) 
 
     # Create outlets
     outlet_mocap = StreamOutlet(stream_info_mocap)

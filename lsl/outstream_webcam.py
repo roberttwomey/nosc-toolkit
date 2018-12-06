@@ -8,10 +8,10 @@ WC_CHNS = 3
 SAMPLE_RATE = 10
 
 # create a video capture object
-# vc = cv2.VideoCapture(0)
+vc = cv2.VideoCapture(0)
 
 # stream from camera 1
-vc = cv2.VideoCapture(1)
+# vc = cv2.VideoCapture(1)
 
 if vc.isOpened(): # try to get the first frame
     rval, frame = vc.read()

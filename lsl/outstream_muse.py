@@ -99,8 +99,9 @@ while True:
 
     outlet_muse.push_sample(new_sample)
     
-    print("Sample sent")
-    print(new_sample)
-    print("")
+    # print("Sample sent")
+    # print(new_sample)
+    # print("")
+    # print(".")
     time.sleep(1.0/SAMPLE_RATE)
 

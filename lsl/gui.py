@@ -51,6 +51,7 @@ def create_wave_plot(ax, samples, timestamps, channels):
 
     num_samples = len(samples)
     num_channels = len(samples[0])
+    print(timestamps)
 
     # get only some samples since it will be too slow if there are too many data points
     samples_index = np.linspace(0, num_samples, num=SAMPLE_FREQ, endpoint=False).astype(int)
@@ -126,6 +127,9 @@ class App():
         # create frames for the gui
         self.root = tk.Tk()
 
+        self.quit_button = tk.Button(self.root, text="Quit", command=self.root.destroy).pack()
+
+
         # the video frame
         self.frame_video = tk.Frame(self.root)
         self.frame_video.pack(side=tk.LEFT)
@@ -140,12 +144,20 @@ class App():
 
         # retrieve xdf data
         stream = xdf.load_xdf(file_path)
-        print(stream)
 
         self.data_all = []
         
+        
+        # for astream in stream:
+            # print(astream)
+        # print(stream[1])
+        # exit()
+            
         # fill the above list with necessay data to build the graphs
         for sub_stream in stream[0]:
+            print(sub_stream['info']['name'])
+            print(sub_stream['time_stamps'])
+
             # buffer video or plot data
             if (sub_stream['info']['name'][0] == 'Webcam'):
                 self.data_video = sub_stream['time_series']
@@ -154,6 +166,8 @@ class App():
                 sub_stream['time_series'], 
                 sub_stream['time_stamps'], 
                 sub_stream['info']['desc'][0]['channels'][0].keys()))
+
+        # exit()
 
         # create plots
         self.fig, self.axes = plt.subplots(len(self.data_all), 1, figsize=(15, 10))
@@ -168,6 +182,7 @@ class App():
 
         # fill the plots with data
         for i, sub_stream in enumerate(self.data_all):
+            print(i, sub_stream)
             create_wave_plot(self.axes[i], sub_stream[0], sub_stream[1], sub_stream[2])
         
         # create the slider plots
