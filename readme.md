@@ -30,7 +30,17 @@ After starting each of the individual data streams below, hit "update" in the La
 
 Pair the Muse with your computer, wear the device, and start the oustream software. 
 
-In a command prompt, run: [muse/StreamLSLMuseData.bat](muse/StreamLSLMuseData.bat)
+In a command prompt, run: [muse/StreamMuseOSC.bat](muse/StreamMuseOSC.bat)
+
+Open the git bash application. 
+
+Change the the nosc project directory, and navigate to [lsl/](lsl/).
+
+Run the oustream muse program:
+
+```
+python oustream_muse.py
+```
 
 ### Capture from Polar HR/HVR device
 
@@ -48,7 +58,7 @@ Once the indicator light is pulsing a slow blue, connect to the available ```Sha
 
 Open the git bash application. 
 
-Change to the nosc project directory, and navigate to [lsl/flow-lsl-interface](lsl/flow-lsl-interface). 
+Change to the nosc project directory, and navigate to [lsl/](lsl/). 
 
 Run the outstream shadowsuit software:
 
@@ -62,7 +72,7 @@ Plug in the webcam to your USB port.
 
 Open the git bash application. 
 
-Change to the nosc project directory, and navigate to [lsl/flow-lsl-interface](lsl/flow-lsl-interface). 
+Change to the nosc project directory, and navigate to [lsl](lsl). 
 
 Run the oustream webcam software:
 
@@ -70,11 +80,25 @@ Run the oustream webcam software:
 python outstream_webcam.py
 ```
 
+If you need to switch what camera you are recording from, open ```oustream_webcam.py``` in a text editor. 
+
+Change the following line to select a different camera number:
+
+```
+vc = cv2.VideoCapture(0)
+```
+
+For instance to use the external webcam instead of the built-in camera on your laptop, write:
+
+```
+vc = cv2.VideoCapture(1)
+```
+
 ### Record with Lab Recorder
 
-If you now update the lis of available streams in labrecorder, you should see the Polar, Muse, Webcam, and Mocap/Shadow Suit. Click the checkbox next to each of these you wish to record to. 
+If you now update the list of available streams in labrecorder, you should see the Polar, Muse, Webcam, and Mocap/Shadow Suit. Click the checkbox next to each of these you wish to record to. 
 
-Set a storage location for your data using the "Browse" button. I suggest using the [data/](data/) directory. Give your file/take a meaningful name.  
+Set a storage location for your data using the "Browse" button. I suggest using the [data/](data/) directory in the nosc directory. Give your file/take a meaningful name.  
 
 Use the "Start" and "Stop" buttons under Recording Control to make your recordings.
 
@@ -84,9 +108,9 @@ When you are finished recording, you can quit out of all of the oustream softwar
 
 ## Preview your Recorded Data
 
-Our main software for previewing the recorded data is ```gui.py``` found in [lsl/flow-lsl-interface](lsl/flow-lsl-interface)
+Our main software for previewing the recorded data is ```gui.py``` found in [lsl/](lsl)
 
-Run the program from git bash. From the [lsl/flow-lsl-interface](lsl/flow-lsl-interface) directory, run:
+Run the program from git bash. From the [lsl](lsl) directory, run:
 
 ```
 python gui.py your_data_file.xdf
@@ -112,7 +136,7 @@ You should see the rigged skeleton follow the motions of your shadow suit.
 
 Wear the Polar sensor and start the BLEPolarDirect program. 
 
-With Unity, open the [unity/unity%20LSL%20test](unity/unity%20LSL%20test) project. 
+With Unity, open the [unity/unity LSL test](unity/unity%20LSL%20test) project. 
 
 Play the **lsl to unity test** scene. 
 
