@@ -39,7 +39,7 @@ namespace BLEConsole
 
         // HR stuff
         static MovingAverageCalculator rrMovingAverage = new MovingAverageCalculator(10);
-
+        static string hrDeviceName = "Polar H10";
         static string _versionInfo;
 
         //// Variables for "foreach" loop implementation
@@ -66,17 +66,36 @@ namespace BLEConsole
 
         static void Main(string[] args)
         {
-            // Get app name and version
-            var name = Assembly.GetCallingAssembly().GetName();
-            _versionInfo = string.Format($"{name.Name} ver. {name.Version.Major:0}.{name.Version.Minor:0}.{name.Version.Build:0}\n");
-            if (!Console.IsInputRedirected) Console.WriteLine(_versionInfo);
-
-            // Set Ctrl+Break/Ctrl+C handler
-            //Console.CancelKeyPress += Console_CancelKeyPress;
-
+            // Check for command line arguments
+            if (args.Length > 0)
+            {
+                hrDeviceName = args[0];
+                // To print the command line  
+                // arguments using foreach loop 
+                foreach (Object obj in args)
+                {
+                    Console.WriteLine(obj);
+                }
+            }
 
             // create LSL stream info and outlet
-            info = new liblsl.StreamInfo("Polar", "HRV", 3, 10);
+            info = new liblsl.StreamInfo("Polar", "HRV", 2, 10);
+
+            // add descriptions of 
+            liblsl.XMLElement chns = info.desc().append_child("channels");
+            chns.append_child("hr");
+            chns.append_child("rr");
+
+            //chns.append_child("channel")
+            //    .append_child_value("label", "hr")
+            //    .append_child_value("unit", "bpm")
+            //    .append_child_value("type", "HR");
+
+            //chns.append_child("channel")
+            //    .append_child_value("label", "rr")
+            //    .append_child_value("unit", "ms")
+            //    .append_child_value("type", "HR");
+
             outlet = new liblsl.StreamOutlet(info);
 
             // Run main loop
@@ -118,7 +137,9 @@ namespace BLEConsole
         static async Task ConnectToPolar()
         {
 
-            OpenDevice("Polar H10 3F").Wait();
+            //OpenDevice("Polar H10 3F").Wait();
+            OpenDevice(hrDeviceName).Wait();
+
             Console.WriteLine("\n");
 
             SetService("HeartRate").Wait();
