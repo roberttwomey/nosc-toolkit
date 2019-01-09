@@ -32,12 +32,12 @@ Use pip to install a number of packages (including [pylsl](https://pypi.org/proj
 pip install pylsl
 pip install numpy
 pip install matplotlib
-pip install python-opencv-contrib
+pip install opencv-contrib-python
 pip install pillow
 pip install python-osc
 ```
 
-If you are unable to install python-opencv-contrib (for instance with 64 bit python), then you can install ```python-opencv``` instead.
+If you are unable to install opencv-python (for instance with 64 bit python), then you can install ```python-opencv``` instead.
 
 
 ## Using the programs
