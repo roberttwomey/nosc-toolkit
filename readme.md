@@ -10,7 +10,7 @@ Currently this project interfaces with the following sensors:
 * EEG - muse
 * HR/HVR - Polar H7 or H10
 * webcam (reference video)
-* breath
+* breath (not yet implemented)
 
 Data is captured using LabRecorder from the [Lab Streaming Layer](https://github.com/sccn/labstreaminglayer) project.
 
@@ -22,31 +22,29 @@ Assumes you have done all software setup below.
 
 ### Start the LabRecorder app.
 
-Run the LabRecorder app. 
+We are currently using LabRecorder from the LSL project to record data. You can get the LabRecorder app here: LabRecorder-1.13.zip [ftp://sccn.ucsd.edu/pub/software/LSL/Apps/](ftp://sccn.ucsd.edu/pub/software/LSL/Apps/)
 
-After starting each of the individual data streams below, hit "update" in the LabRecorder "Record from Streams" window to refresh to list of available data streams. 
+Start LabRecorder.exe.
+
+As you start each of the individual data streams below, hit "update" in the LabRecorder "Record from Streams" window to refresh to list of available data streams. 
 
 ### Capture from Muse EEG
 
 Pair the Muse with your computer, wear the device, and start the oustream software. 
 
-In a command prompt, run: [muse/StreamMuseOSC.bat](muse/StreamMuseOSC.bat)
+In a command prompt, run: [muse/StreamMuse.bat](muse/StreamMuse.bat)
 
-Open the git bash application. 
+In Windows Explorer, navigate to ```lsl/flow-lsl-interface``` and run [lsl/flow-lsl-interface/outstream_muse.py](outstream_muse.py).
 
-Change the the nosc project directory, and navigate to [lsl/](lsl/).
-
-Run the oustream muse program:
-
-```
-python oustream_muse.py
-```
+You should now see the Muse as a data source in LabRecorder. 
 
 ### Capture from Polar HR/HVR device
 
 Put on the Polar H10 monitor and start the data outstream software. 
 
-In a command prompt, run: [ble/ble-polar-direct/BLEPolarDirect/bin/Debug/BLEPolarDirect.exe](ble/ble-polar-direct/BLEPolarDirect/bin/Debug/BLEPolarDirect.exe)
+In Windows Explorer, navigate to ```ble/ble-polar-direct/BLEPolarDirect/bin/Debug/``` and run [ble/ble-polar-direct/BLEPolarDirect/bin/Debug/BLEPolarDirect.exe](ble/ble-polar-direct/BLEPolarDirect/bin/Debug/BLEPolarDirect.exe)
+
+You should now see the Polar as a data source in LabRecorder.
 
 ### Capture from Shadow Suit
 
@@ -56,69 +54,40 @@ Put on the Shadow Suit and power it on. (See the video tutorial [here](https://w
 
 Once the indicator light is pulsing a slow blue, connect to the available ```Shadow1``` WiFi network from your laptop. (SSID: "Shadow1", pwd: 2062012708). In the Shadow app you should see the live skeleton.
 
-Open the git bash application. 
+In Windows Explorer, navigate to ```lsl/flow-lsl-interface``` and run [lsl/flow-lsl-interface/outstream_shadow.py](outstream_shadow.py). 
 
-Change to the nosc project directory, and navigate to [lsl/](lsl/). 
-
-Run the outstream shadowsuit software:
-
-```
-python outstream_shadowsuit.py
-```
+You should now see the shadowsuit as a data source in LabRecorder.
 
 ### Capture from Webcam
 
 Plug in the webcam to your USB port.
 
-Open the git bash application. 
+In Windows Explorer, navigate to ```lsl/flow-lsl-interface``` and run [lsl/flow-lsl-interface/outstream_webcam.py](lsl/flow-lsl-interface/outstream_webcam.py). 
 
-Change to the nosc project directory, and navigate to [lsl](lsl). 
-
-Run the oustream webcam software:
-
-```
-python outstream_webcam.py
-```
-
-If you need to switch what camera you are recording from, open ```oustream_webcam.py``` in a text editor. 
-
-Change the following line to select a different camera number:
-
-```
-vc = cv2.VideoCapture(0)
-```
-
-For instance to use the external webcam instead of the built-in camera on your laptop, write:
-
-```
-vc = cv2.VideoCapture(1)
-```
+You should now see the Webcam as a data source in LabRecorder.
 
 ### Record with Lab Recorder
 
-If you now update the list of available streams in labrecorder, you should see the Polar, Muse, Webcam, and Mocap/Shadow Suit. Click the checkbox next to each of these you wish to record to. 
+If you now update the lis of available streams in labrecorder, you should see the Polar, Muse, Webcam, and Mocap/Shadow Suit. Click the checkbox next to each of these you wish to record to. 
 
-Set a storage location for your data using the "Browse" button. I suggest using the [data/](data/) directory in the nosc directory. Give your file/take a meaningful name.  
+Set a storage location for your data using the "Browse" button. I suggest using the [data/](data/) directory. Give your file/take a meaningful name.  
 
 Use the "Start" and "Stop" buttons under Recording Control to make your recordings.
 
-### Cleanup
+## Preview Data
 
-When you are finished recording, you can quit out of all of the oustream softwares started above. Check your recordings using the ```gui.py``` software below.
+Our main software for previewing the recorded data is ```gui.py``` found in [lsl/flow-lsl-interface](lsl/flow-lsl-interface)
 
-## Preview your Recorded Data
-
-Our main software for previewing the recorded data is ```gui.py``` found in [lsl/](lsl)
-
-Run the program from git bash. From the [lsl](lsl) directory, run:
+Run the program from git bash. From the [lsl/flow-lsl-interface](lsl/flow-lsl-interface) directory, run:
 
 ```
 python gui.py your_data_file.xdf
 ```
+
 Replace ```your_data_file.xdf``` with the name of the file you wish to preview.
 
 
-## Live Stream  Data in Unity
+## Live Stream Data in Unity
 
 More coming soon. For now we have very preliminary visualization in Unity. 
 
@@ -136,7 +105,7 @@ You should see the rigged skeleton follow the motions of your shadow suit.
 
 Wear the Polar sensor and start the BLEPolarDirect program. 
 
-With Unity, open the [unity/unity LSL test](unity/unity%20LSL%20test) project. 
+With Unity, open the [unity/unity%20LSL%20test](unity/unity%20LSL%20test) project. 
 
 Play the **lsl to unity test** scene. 
 
@@ -189,4 +158,16 @@ We are currently testing with 2018.2.15f1
 
 ### Setup the python lsl interface software
 
-Do the necessary python installation for the flow-lsl-interface submodule. See [lsl/flow-lsl-interface/readme.md](lsl/flow-lsl-interface/readme.md).
+Do the necessary python installation for the python lsl software. See [lsl/readme.md](lsl/readme.md).
+
+### Install Github Desktop
+
+Download github desktop for windows and install: https://desktop.github.com/
+
+
+# TODO
+* textually annotate data
+* unity playback of LSL data
+* exploratory data analysis in python with scikitlearn, matplotlib, other tools
+* use the hrv analysis package: [https://github.com/rhenanbartels/hrv](https://github.com/rhenanbartels/hrv)
+* manual, then automatic classification of peak moments/NOSC
