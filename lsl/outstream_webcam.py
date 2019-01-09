@@ -2,8 +2,8 @@ import cv2
 from pylsl import StreamInfo, StreamOutlet
 import numpy as np
 
-WC_WIDTH = 320
-WC_HEIGHT = 240
+WC_WIDTH = 160
+WC_HEIGHT = 120
 WC_CHNS = 3
 SAMPLE_RATE = 10
 

@@ -9,8 +9,9 @@ import struct
 import itertools
 import xml.etree.ElementTree as ET
 from collections import OrderedDict, defaultdict
-
+from tempfile import mkdtemp
 import numpy as np
+import os.path as path
 
 __all__ = ['load_xdf']
 __version__ = '1.14.0'
@@ -330,13 +331,37 @@ def load_xdf(filename,
 
     # Concatenate the signal across chunks
     for stream in temp.values():
+        print(stream.fmt)
         if stream.time_stamps:
             # stream with non-empty list of chunks
             stream.time_stamps = np.concatenate(stream.time_stamps)
             if stream.fmt == 'string':
                 stream.time_series = list(itertools.chain(*stream.time_series))
             else:
-                stream.time_series = np.concatenate(stream.time_series)
+                # this line gives me an out of memory error:
+                # print(len(stream.time_series))
+                stream.time_series = np.concatenate(stream.time_series[::30])
+                stream.time_stamps = stream.time_stamps[::30]
+
+                # print(len(stream.time_series))
+
+                # workaround, NOT WORKING
+                # chunk_shape = stream.time_series[0].shape
+                # stream_len = len(stream.time_series)
+                # new_shape = (stream_len, *chunk_shape)
+                # print(chunk_shape, (stream_len))
+                # print(new_shape)
+                # # result = np.empty(new_shape)
+                # # result = np.memmap("/c/Users/Robert/Documents/clarkecenter/nosc-toolkit/data/tempvideo.myarray", mode='w+', shape=new_shape)
+                # filename = path.join(mkdtemp(), 'newfile.dat')
+                # result = np.memmap(filename, mode='w+', shape=new_shape)
+                # print(result.shape)
+                # for i in range(stream_len): 
+                #     result[i] = stream.time_series[i]
+                # stream.time_series = result
+                # print(stream.time_series.shape)
+                # trying a fix from here: https://stackoverflow.com/questions/48175190/memory-error-for-np-concatenate
+               
         else:
             # stream without any chunks
             stream.time_stamps = np.zeros((0,))
