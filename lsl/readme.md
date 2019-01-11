@@ -12,6 +12,8 @@ Install git (with git bash): [download](https://git-scm.com/download/win)
 
 Install the latest release of Python for Windows [download](https://www.python.org/downloads/windows/)
 
+When downloading Python, don't forget to check the box for "Add Python to environment variables".
+
 In git bash, alias python to python.exe:
 
 ```
