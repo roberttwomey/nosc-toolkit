@@ -34,7 +34,7 @@ Pair the Muse with your computer, wear the device, and start the oustream softwa
 
 In a command prompt, run: [muse/StreamMuse.bat](muse/StreamMuse.bat)
 
-In Windows Explorer, navigate to ```lsl/flow-lsl-interface``` and run [lsl/flow-lsl-interface/outstream_muse.py](outstream_muse.py).
+In Windows Explorer, navigate to ```lsl/flow-lsl-interface``` and run [lsl/outstream_muse.py](outstream_muse.py).
 
 You should now see the Muse as a data source in LabRecorder. 
 
@@ -54,7 +54,7 @@ Put on the Shadow Suit and power it on. (See the video tutorial [here](https://w
 
 Once the indicator light is pulsing a slow blue, connect to the available ```Shadow1``` WiFi network from your laptop. (SSID: "Shadow1", pwd: 2062012708). In the Shadow app you should see the live skeleton.
 
-In Windows Explorer, navigate to ```lsl/flow-lsl-interface``` and run [lsl/flow-lsl-interface/outstream_shadow.py](outstream_shadow.py). 
+In Windows Explorer, navigate to ```lsl/flow-lsl-interface``` and run [lsl/outstream_shadow.py](outstream_shadow.py). 
 
 You should now see the shadowsuit as a data source in LabRecorder.
 
@@ -62,7 +62,7 @@ You should now see the shadowsuit as a data source in LabRecorder.
 
 Plug in the webcam to your USB port.
 
-In Windows Explorer, navigate to ```lsl/flow-lsl-interface``` and run [lsl/flow-lsl-interface/outstream_webcam.py](lsl/flow-lsl-interface/outstream_webcam.py). 
+In Windows Explorer, navigate to ```lsl/flow-lsl-interface``` and run [lsl/outstream_webcam.py](lsl/flow-lsl-interface/outstream_webcam.py). 
 
 You should now see the Webcam as a data source in LabRecorder.
 
@@ -78,7 +78,7 @@ Use the "Start" and "Stop" buttons under Recording Control to make your recordin
 
 Our main software for previewing the recorded data is ```gui.py``` found in [lsl](lsl)
 
-Run the program from git bash. From the [lsl/flow-lsl-interface](lsl/flow-lsl-interface) directory, run:
+Run the program from git bash. From the [lsl](lsl) directory, run:
 
 ```
 python gui.py your_data_file.xdf
