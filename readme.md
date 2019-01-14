@@ -76,7 +76,7 @@ Use the "Start" and "Stop" buttons under Recording Control to make your recordin
 
 ## Preview Data
 
-Our main software for previewing the recorded data is ```gui.py``` found in [lsl/flow-lsl-interface](lsl/flow-lsl-interface)
+Our main software for previewing the recorded data is ```gui.py``` found in [lsl](lsl)
 
 Run the program from git bash. From the [lsl/flow-lsl-interface](lsl/flow-lsl-interface) directory, run:
 
