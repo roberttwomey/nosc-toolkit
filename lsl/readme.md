@@ -34,7 +34,7 @@ Use pip to install a number of packages (including [pylsl](https://pypi.org/proj
 pip install pylsl
 pip install numpy
 pip install matplotlib
-pip install python-opencv-contrib
+pip install opencv-contrib-python
 pip install pillow
 pip install python-osc
 ```
