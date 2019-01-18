@@ -30,7 +30,7 @@ As you start each of the individual data streams below, hit "update" in the LabR
 
 ### Capture from Muse EEG
 
-Pair the Muse with your computer, wear the device, and start the oustream software. 
+Pair the Muse with your computer, wear the device, and start the outstream software. 
 
 In a command prompt, run: [muse/StreamMuse.bat](muse/StreamMuse.bat)
 
@@ -42,7 +42,7 @@ You should now see the Muse as a data source in LabRecorder.
 
 Put on the Polar H10 monitor and start the data outstream software. 
 
-In Windows Explorer, navigate to ```ble/ble-polar-direct/BLEPolarDirect/bin/Debug/``` and run [ble/ble-polar-direct/BLEPolarDirect/bin/Debug/BLEPolarDirect.exe](ble/ble-polar-direct/BLEPolarDirect/bin/Debug/BLEPolarDirect.exe)
+In Windows Explorer, navigate to ```ble/BLEPolarDirect/bin/Debug/``` and run [ble/BLEPolarDirect/bin/Debug/BLEPolarDirect.exe](ble/BLEPolarDirect/bin/Debug/BLEPolarDirect.exe)
 
 You should now see the Polar as a data source in LabRecorder.
 
