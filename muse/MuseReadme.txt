@@ -20,7 +20,7 @@ Normal Usage
 	Lights should scan back and forth, until a connection is established
 
 2. Connect to Muse
-	Run StreamMuseOSC.bat
+	Run StreamMuse.bat
 
 3. Run whatever endpoint client you want to use the Muse.
 
