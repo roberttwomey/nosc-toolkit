@@ -3,3 +3,4 @@ UnityLockFile
 .vs
 lsl/__pycache__
 data/*
+blender/*
