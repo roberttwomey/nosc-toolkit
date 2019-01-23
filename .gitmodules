@@ -1,6 +1,6 @@
 [submodule "shadowsuit/sdk"]
 	path = shadowsuit/sdk
 	url = https://github.com/motion-workshop/sdk
-[submodule "unity/unity LSL test/Assets/LSL4Unity"]
-	path = unity/unity LSL test/Assets/LSL4Unity
-	url = https://github.com/xfleckx/LSL4Unity
+# [submodule "unity/unity LSL test/Assets/LSL4Unity"]
+	# path = unity/unity LSL test/Assets/LSL4Unity
+	# url = https://github.com/xfleckx/LSL4Unity
