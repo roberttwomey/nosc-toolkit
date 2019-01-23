@@ -4,7 +4,7 @@
   <description asmv2:iconFile="AppIcon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="BLEPolarDirect" version="1.0.6950.20522" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="BLEPolarDirect" version="1.0.6962.19720" language="neutral" processorArchitecture="msil" />
     <commandLine file="BLEPolarDirect.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -59,13 +59,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BLEPolarDirect.exe" size="122880">
-      <assemblyIdentity name="BLEPolarDirect" version="1.0.6950.20522" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="BLEPolarDirect" version="1.0.6962.19720" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>rShJr3ARuiuwFW83e1XmYzJU+Wew5pevUTSNs4l1OpU=</dsig:DigestValue>
+        <dsig:DigestValue>Eu0UdiWnKW+BIsH88yjxk+un065anWQAT2XElvgI2os=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

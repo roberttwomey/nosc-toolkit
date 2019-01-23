@@ -31,3 +31,14 @@ C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github2\ble\BLEPolarDirect\o
 C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github2\ble\BLEPolarDirect\obj\Debug\BLEPolarDirect.application
 C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github2\ble\BLEPolarDirect\obj\Debug\BLEPolarDirect.exe
 C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github2\ble\BLEPolarDirect\obj\Debug\BLEPolarDirect.pdb
+C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github\ble\BLEPolarDirect\bin\Debug\BLEPolarDirect.exe.config
+C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github\ble\BLEPolarDirect\bin\Debug\BLEPolarDirect.exe.manifest
+C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github\ble\BLEPolarDirect\bin\Debug\BLEPolarDirect.application
+C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github\ble\BLEPolarDirect\bin\Debug\BLEPolarDirect.exe
+C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github\ble\BLEPolarDirect\bin\Debug\BLEPolarDirect.pdb
+C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github\ble\BLEPolarDirect\obj\Debug\BLEPolarDirect.csprojAssemblyReference.cache
+C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github\ble\BLEPolarDirect\obj\Debug\BLEPolarDirect.csproj.CoreCompileInputs.cache
+C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github\ble\BLEPolarDirect\obj\Debug\BLEPolarDirect.exe.manifest
+C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github\ble\BLEPolarDirect\obj\Debug\BLEPolarDirect.application
+C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github\ble\BLEPolarDirect\obj\Debug\BLEPolarDirect.exe
+C:\Users\Robert\Documents\clarkecenter\nosc-toolkit-github\ble\BLEPolarDirect\obj\Debug\BLEPolarDirect.pdb
