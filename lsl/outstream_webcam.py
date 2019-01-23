@@ -2,13 +2,23 @@ import cv2
 from pylsl import StreamInfo, StreamOutlet
 import numpy as np
 
+# video capture size and channels
 WC_WIDTH = 160
 WC_HEIGHT = 120
 WC_CHNS = 3
-SAMPLE_RATE = 10
+
+# video capture sample intervals in ms
+HIGH_FRAMERATE = 33
+LOW_FRAMERATE = 1000
+
+# initial conditions, capture at high frame rate
+SAMPLE_RATE = HIGH_FRAMERATE
+DURATION_HIGH_FRAMERATE_MS = (1.0 / SAMPLE_RATE) * 30.0 * 1000
 
 # create a video capture object
 vc = cv2.VideoCapture(0)
+
+# vc.set(cv2.CV_CAP_PROP_FPS,SAMPLE_RATE)
 
 # stream from camera 1
 # vc = cv2.VideoCapture(1)
@@ -28,6 +38,8 @@ outlet_webcam = StreamOutlet(stream_info_webcam)
 
 print("Streaming data...")
 
+framecount = 0
+
 # while there are still frames being read
 while rval:
     # resize and flatten the image into a 1d array 
@@ -37,7 +49,16 @@ while rval:
 
     # read in new frame
     rval, frame = vc.read()
-    key = cv2.waitKey(SAMPLE_RATE)
+
+    framecount = framecount + 1
+    if framecount > DURATION_HIGH_FRAMERATE and SAMPLE_RATE == HIGH_FRAMERATE:
+        SAMPLE_RATE = LOW_FRAMERATE
+        print("{} frames elapsed.".format(framecount))
+        print("Switching to low framerate...")
+    # with opencv 3.4, you can not change capture framerate directly
+    # you control fps by changing a waitkey delay to set frame rate
+    # see here: https://stackoverflow.com/questions/52068277/change-frame-rate-in-opencv-3-4-2
+    key = cv2.waitKey(SAMPLE_RATE) ## why is SAMPLE_RATE here?
 
     if key == 27: # exit on ESC
         break

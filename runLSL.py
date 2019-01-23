@@ -1,20 +1,30 @@
+#!/c/Users/Robert/AppData/Local/Programs/Python/Python37-32/python
+
 # This file is to run the corresponding bat, exe and python files
 import subprocess
 import os
 
-# Run the Muse EEG
+hrDeviceName = "Polar H7"
+
 current_dir = os.getcwd()
-print("========== Connecting to Muse EEG... ==========")
-p1 = subprocess.Popen(current_dir + "\muse\StreamMuse.bat")
-stdout, stderr = p1.communicate()
-# return 0 if success
-if p1.returncode == 0:
-    print("========== Muse EEG connected! ==========")
-os.system('python lsl/outstream_muse.py')
+
+# Run the Muse EEG
+# print("========== Connecting to Muse EEG... ==========")
+# # p1 = subprocess.Popen(current_dir + "\muse\StreamMuse.bat")
+# musecmd = "muse-io --osc-bp-urls osc.udp://127.0.0.1:6000/muse/elements/ --osc-battery-urls osc.udp://127.0.0.1:6000/muse/batt/"
+
+# p1 = subprocess.Popen(musecmd)
+# stdout, stderr = p1.communicate()
+
+# # return 0 if success
+# if p1.returncode == 0:
+#     print("========== Muse EEG connected! ==========")
+# os.system('python lsl/outstream_muse.py')
 
 # Run Polar HR/HVR device
 print("========== Connecting to Polar HR/HVR device... ==========")
-p2 = subprocess.Popen(current_dir + "\\ble\BLEPolarDirect\\bin\Debug\BLEPolarDirect.exe")
+p2 = subprocess.Popen(current_dir + "\\ble\BLEPolarDirect\\bin\Debug\BLEPolarDirect.exe" + " \"" + hrDeviceName+"\"")
+
 stdout, stderr = p2.communicate()
 # return 0 if success
 if p2.returncode == 0:
