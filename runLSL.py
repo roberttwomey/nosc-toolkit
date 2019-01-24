@@ -1,26 +1,45 @@
 #!/c/Users/Robert/AppData/Local/Programs/Python/Python37-32/python
 
 # This file is to run the corresponding bat, exe and python files
+from subprocess import Popen, PIPE, CREATE_NEW_CONSOLE
 import subprocess
-import os
+import os, sys, time, threading
+from multiprocessing import Process
 
 hrDeviceName = "Polar H7"
 
 current_dir = os.getcwd()
 
-# Run the Muse EEG
-print("========== Connecting to Muse EEG... ==========")
-# p1 = subprocess.Popen(current_dir + "\muse\StreamMuse.bat")
-musecmd = "muse-io --osc-bp-urls osc.udp://127.0.0.1:6000/muse/elements/ --osc-battery-urls osc.udp://127.0.0.1:6000/muse/batt/"
+#def MuseApp():
+p1 = subprocess.Popen(current_dir + "\muse\StreamMuse.bat", creationflags=CREATE_NEW_CONSOLE)
 
-p1 = subprocess.Popen(musecmd)
-stdout, stderr = p1.communicate()
+#def MuseLsl():
+os.system('python lsl/outstream_muse.py')
+'''
+if __name__ == '__main__':
+    p = Process(target=MuseApp)
+    p.start()
+    p1 = Process(target=MuseLsl)
+    p1.start()
+    p.join()
+    p1.join()
+'''
+# Run the Muse EEG
+# print("========== Connecting to Muse EEG... ==========")
+# p1 = subprocess.Popen(current_dir + "\muse\StreamMuse.bat")
+# musecmd = "muse-io --osc-bp-urls osc.udp://127.0.0.1:6000/muse/elements/ --osc-battery-urls osc.udp://127.0.0.1:6000/muse/batt/"
+
+# p1 = subprocess.Popen(musecmd, shell=True)
 
 # return 0 if success
-if p1.returncode == 0:
-    print("========== Muse EEG connected! ==========")
-os.system('python lsl/outstream_muse.py')
+#if p1.returncode == 0:
+#    print("========== Muse EEG connected! ==========")
+#os.system('python lsl/outstream_muse.py')
 
+#stdout, stderr = p1.communicate()
+
+
+'''
 # Run Polar HR/HVR device
 print("========== Connecting to Polar HR/HVR device... ==========")
 p2 = subprocess.Popen(current_dir + "\\ble\BLEPolarDirect\\bin\Debug\BLEPolarDirect.exe" + " \"" + hrDeviceName+"\"")
@@ -45,4 +64,4 @@ print("========== Connecting to Webcam... ==========")
 os.system('python lsl/outstream_webcam.py')
 
 print("========== Done! ==========")
-
+'''
