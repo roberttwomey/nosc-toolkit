@@ -18,7 +18,7 @@ print("=== Done with muse! ===")
 
 # Run Polar HR/HVR device
 print("=== Opening BLEPolarDirect ===")
-p3 = subprocess.Popen(current_dir + "\\ble\BLEPolarDirect\\bin\Debug\BLEPolarDirect.exe" + " \"" + hrDeviceName+"\"")
+p3 = subprocess.Popen(current_dir + "\\ble\BLEPolarDirect\\bin\Debug\BLEPolarDirect.exe" + " \"" + hrDeviceName+"\"", creationflags=CREATE_NEW_CONSOLE)
 print("=== Done with BLEPolarDirect! ===")
 
 # Run Shadow Suit applications
