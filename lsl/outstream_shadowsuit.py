@@ -17,7 +17,10 @@ def shadow_client(host, port, lsl_outlet):
 
     client = Client(host, port)
 
-    print("Connected to %s:%d" % (host, port))
+    sys.stdout.write("Creating Shadow client...")
+    sys.stdout.flush()
+
+    sys.stdout.write("connected to %s:%d\n" % (host, port))
 
     if PortConfigurable == port:
         # xml_string = \
@@ -36,10 +39,12 @@ def shadow_client(host, port, lsl_outlet):
             "</cofnigurable>"
 
         if client.writeData(xml_string):
-            print("Sent active channel definition to Configurable service")
+            sys.stdout.write("Sent active channel definition to Configurable service...\n")
 
 
     if client.waitForData():
+        sys.stdout.write("Waiting for data...")
+        sys.stdout.flush()
         while True:
             data = client.readData()
             if None == data:
@@ -61,6 +66,8 @@ def shadow_client(host, port, lsl_outlet):
                     print(line)
 
             lsl_outlet.push_sample(new_sample)                    
+    else:
+        print("Client not configured properly...exiting.")
 
 
 def main(argv):
@@ -71,9 +78,15 @@ def main(argv):
         host = argv[1]
 
 
+    sys.stdout.write("\n=== outstream_shadowsuit.py ===\n\n")
+
+    
     # Setup outlet stream infos
     mocap_channels = 32
     sample_size = 8
+
+    sys.stdout.write("Creating LSL outlets...")
+    sys.stdout.flush()
 
     stream_info_mocap = StreamInfo('ShadowSuit', 'MOCAP', mocap_channels * sample_size, 200)
     channels = stream_info_mocap.desc().append_child("channels")
@@ -87,7 +100,8 @@ def main(argv):
     # Create outlets
     outlet_mocap = StreamOutlet(stream_info_mocap)
 
-    print("Outlets created")
+    sys.stdout.write("created.\n")
+    sys.stdout.flush()
 
     shadow_client(host, PortConfigurable, outlet_mocap)
 

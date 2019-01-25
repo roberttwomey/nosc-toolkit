@@ -1,6 +1,7 @@
 import cv2
 from pylsl import StreamInfo, StreamOutlet
 import numpy as np
+import sys
 
 # video capture size and channels
 WC_WIDTH = 160
@@ -13,7 +14,12 @@ LOW_FRAMERATE = 1000
 
 # initial conditions, capture at high frame rate
 SAMPLE_RATE = HIGH_FRAMERATE
-DURATION_HIGH_FRAMERATE_MS = (1.0 / SAMPLE_RATE) * 30.0 * 1000
+DURATION_HIGH_FRAMERATE = (1.0 / SAMPLE_RATE) * 30.0 * 1000
+
+print("\n=== outstream_webcam.py ===\n")
+
+sys.stdout.write("Opening video device...")
+sys.stdout.flush()
 
 # create a video capture object
 vc = cv2.VideoCapture(0)
@@ -25,10 +31,17 @@ vc = cv2.VideoCapture(0)
 
 if vc.isOpened(): # try to get the first frame
     rval, frame = vc.read()
+    sys.stdout.write("opened.\n")
 else:
     rval = False
+    sys.stdout.write("failed.\n Exiting\n")
+    exit()
 
-print("Connected to video device...")
+sys.stdout.flush()
+
+
+sys.stdout.write("Creating LSL outlets...")
+sys.stdout.flush()
 
 # create lsl stream info
 stream_info_webcam = StreamInfo('Webcam', 'Experiment', WC_WIDTH * WC_HEIGHT * WC_CHNS, SAMPLE_RATE, 'int32', 'webcamid_1')
@@ -36,10 +49,10 @@ stream_info_webcam = StreamInfo('Webcam', 'Experiment', WC_WIDTH * WC_HEIGHT * W
 # create the stream
 outlet_webcam = StreamOutlet(stream_info_webcam)
 
-print("Streaming data...")
 
 framecount = 0
 
+sys.stdout.write("streaming.\n")
 # while there are still frames being read
 while rval:
     # resize and flatten the image into a 1d array 
@@ -52,9 +65,10 @@ while rval:
 
     framecount = framecount + 1
     if framecount > DURATION_HIGH_FRAMERATE and SAMPLE_RATE == HIGH_FRAMERATE:
+        sys.stdout.write("{} frames elapsed.\n".format(framecount))
+        sys.stdout.write("Switching to low framerate...\n")
         SAMPLE_RATE = LOW_FRAMERATE
-        print("{} frames elapsed.".format(framecount))
-        print("Switching to low framerate...")
+      
     # with opencv 3.4, you can not change capture framerate directly
     # you control fps by changing a waitkey delay to set frame rate
     # see here: https://stackoverflow.com/questions/52068277/change-frame-rate-in-opencv-3-4-2
@@ -62,4 +76,9 @@ while rval:
 
     if key == 27: # exit on ESC
         break
+    if framecount % 30 == 0:
+        sys.stdout.write(".")
+        sys.stdout.flush()
+
 vc.release()
+print("exiting.")
