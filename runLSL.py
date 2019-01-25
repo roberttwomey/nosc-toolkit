@@ -9,23 +9,29 @@ hrDeviceName = "Polar H7"
 current_dir = os.getcwd()
 
 # Run the Muse EEG
-# print("=== Opening muse\StreamMuse.bat ===")
-# p1 = subprocess.Popen(current_dir + "\muse\StreamMuse.bat", creationflags=CREATE_NEW_CONSOLE)
+print("=== Opening muse\StreamMuse.bat ===")
+p1 = subprocess.Popen(current_dir + "\muse\StreamMuse.bat", creationflags=CREATE_NEW_CONSOLE)
+time.sleep(3.0)
+cmd_muse = "lsl/outstream_muse.py"
+p2 = subprocess.Popen(["python", cmd_muse], creationflags=CREATE_NEW_CONSOLE)
+print("=== Done with muse! ===")
 
-# os.system('python lsl/outstream_muse.py')
-# print("=== Opened oustream_muse.py ===")
-
-# # Run Polar HR/HVR device
-# p2 = subprocess.Popen(current_dir + "\\ble\BLEPolarDirect\\bin\Debug\BLEPolarDirect.exe" + " \"" + hrDeviceName+"\"")
-# print("=== Opened BLEPolarDirect ===")
+# Run Polar HR/HVR device
+print("=== Opening BLEPolarDirect ===")
+p3 = subprocess.Popen(current_dir + "\\ble\BLEPolarDirect\\bin\Debug\BLEPolarDirect.exe" + " \"" + hrDeviceName+"\"")
+print("=== Done with BLEPolarDirect! ===")
 
 # Run Shadow Suit applications
 # Make sure having MuseLab under C:\Program Files\Motion\Shadow.exe
-p3 = subprocess.Popen("C:\Program Files\Motion\Shadow.exe")
-time.sleep(5.0)
-
-print("=== Opened Motion Shadow Suit ===")
-os.system('python lsl/outstream_shadowsuit.py')
+print("=== Opening Shadow Suit ===")
+p4 = subprocess.Popen("C:\Program Files\Motion\Shadow.exe")
+time.sleep(3.0)
+cmd_shadow = "lsl/outstream_shadowsuit.py"
+p5 = subprocess.Popen(["python", cmd_shadow], creationflags=CREATE_NEW_CONSOLE)
+print("=== Done with shadow Suit! ===")
 
 # Run Webcam applications
-os.system('python lsl/outstream_webcam.py')
+print("=== Opening Webcam ===")
+cmd_webcam = "lsl/outstream_webcam.py"
+p6 = subprocess.Popen(["python", cmd_webcam], creationflags=CREATE_NEW_CONSOLE)
+print("=== Done with Webcam! ===")
