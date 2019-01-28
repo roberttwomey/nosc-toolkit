@@ -98,6 +98,7 @@ namespace Assets.LSL4Unity.Scripts.AbstractInlets
 					// pull as long samples are available
 					while ((lastTimeStamp = inlet.pull_sample(sample, 0.0f)) != 0)
 					{
+                        Debug.Log("pulling samples");
 						Process(sample, lastTimeStamp);
 					}
 
