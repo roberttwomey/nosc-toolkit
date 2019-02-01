@@ -53,6 +53,7 @@ using Assets.LSL4Unity.Scripts.AbstractInlets;
             // apply the rotation to the target transform
             // targetTransform.localScale = targetScale;
             targetText.text = string.Format("hr: {0}bpm\nrr: {1}ms\nstd dev rr: {2}ms", x, y, z);
+            // Debug.Log("in process"); 
         }
 
         protected override void OnStreamAvailable()
