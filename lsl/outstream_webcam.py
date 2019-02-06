@@ -14,7 +14,8 @@ LOW_FRAMERATE = 1000
 
 # initial conditions, capture at high frame rate
 SAMPLE_RATE = HIGH_FRAMERATE
-DURATION_HIGH_FRAMERATE = (1.0 / SAMPLE_RATE) * 30.0 * 1000
+DURATION_HIGH_FRAMERATE_SEC = 30.0
+DURATION_HIGH_FRAMERATE = (1.0 / SAMPLE_RATE) * DURATION_HIGH_FRAMERATE_SEC * 1000
 
 print("\n=== outstream_webcam.py ===\n")
 

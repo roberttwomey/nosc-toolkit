@@ -53,6 +53,9 @@ current_sample = {
         'concentration': None,
 }
 
+sys.stdout.write("\n=== outstream_muse.py ===\n\n")
+sys.stdout.flush()
+
 
 # Setup outlet stream infos
 stream_info_muse = StreamInfo('Muse', 'EEG', CHNS_MUSE, SAMPLE_RATE, 'float32', 'museid_1')
@@ -67,17 +70,33 @@ channel_list = ["ar0", "ar1", "ar2", "ar3",
 for c in channel_list:
     channels.append_child(c) 
 
+
+
+sys.stdout.write("Creating LSL outlets...")
+sys.stdout.flush()
+
 # Create outlets
 outlet_muse = StreamOutlet(stream_info_muse)
 
-print("Outlets created")
+sys.stdout.write("created.\n")
+sys.stdout.flush()
+
+
+sys.stdout.write("Creating muse client...")
+sys.stdout.flush()
 
 # create server thread
 server_thread_muse = ServerThreadMuse(1)
 server_thread_muse.daemon = True
 server_thread_muse.start()
 
-print("Listening for data")
+sys.stdout.write("done.\n")
+sys.stdout.flush()
+
+
+
+sys.stdout.write("Listening for data... (ESC to quit)")
+sys.stdout.flush()
 
 # pushes updated sample through the outlet
 while True:
