@@ -11,9 +11,10 @@ from pylsl import StreamInfo, StreamOutlet
 # last value would be the serial number of the device or some other more or
 # less locally unique identifier for the stream as far as available (you
 # could also omit it but interrupted connections wouldn't auto-recover)
+
 stream_info_muse = StreamInfo('Muse', 'EEG', 8, 100, 'float32', 'myuid34234')
 channels = stream_info_muse.desc().append_child("channels")
-channel_list = ["ar0", "ar1", "ar2", "ar3",
+channel_list = [ "ar0", "ar1", "ar2", "ar3",
         "br0", "br1", "br2", "br3",
         "gr0", "gr1", "gr2", "gr3",
         "tr0", "tr1", "tr2", "tr3",
