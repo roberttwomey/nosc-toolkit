@@ -1,4 +1,4 @@
-﻿==/**
+﻿/**
   Data streaming from the Shadow motion capture system into the Unity game
   engine. This class manages a thread that streams data from the Motion Service
   at a frame rate independent of Unity.

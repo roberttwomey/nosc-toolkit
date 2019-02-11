@@ -5,7 +5,7 @@ using Assets.LSL4Unity.Scripts.AbstractInlets;
 
 public class sphereTest : InletFloatSamples
 {
-    public Vector3 sphereSize = new Vector3 (1, 1, 1);
+    // public Vector3 sphereSize = new Vector3 (1, 1, 1);
 
     public bool useX;
     public bool useY;
@@ -54,8 +54,12 @@ public class sphereTest : InletFloatSamples
         // apply the rotation to the target transform
         // targetTransform.localScale = targetScale;
         // targetText.text = string.Format("hr: {0}bpm\nrr: {1}ms\nstd dev rr: {2}ms", 1, 1, 1);
-        sphereSize = new Vector3(x/15, 1, 1);
+
+        // sphereSize = new Vector3(x/15, 1, 1);
         // sphereSize.x = x;
+
+        Debug.Log(z);
+        //sphereColor = new Color ()
     }
 
     protected override void OnStreamAvailable()
@@ -78,7 +82,9 @@ public class sphereTest : InletFloatSamples
             {
                 pullSamples();
                 interval = 0;
-                this.transform.localScale = sphereSize;
+                //this.transform.localScale = sphereSize;
+
+                gameObject.GetComponent<Renderer>().material.color = new Color(233, 79, 55);
             }
             
         }
