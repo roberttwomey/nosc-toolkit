@@ -5,6 +5,8 @@ import argparse
 import math
 import time
 import json
+import sys
+
 from pythonosc import dispatcher
 from pythonosc import osc_server
 from pylsl import StreamInfo, StreamOutlet
