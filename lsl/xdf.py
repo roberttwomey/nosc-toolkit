@@ -338,10 +338,15 @@ def load_xdf(filename,
             if stream.fmt == 'string':
                 stream.time_series = list(itertools.chain(*stream.time_series))
             else:
-                # this line gives me an out of memory error:
+                # ROBERT SAYS: this line gives me an out of memory error:
                 # print(len(stream.time_series))
-                stream.time_series = np.concatenate(stream.time_series[::30])
-                stream.time_stamps = stream.time_stamps[::30]
+
+                # slice arrays to grab every 30th frame, e.g. 1 fps
+                # stream.time_series = np.concatenate(stream.time_series[::30])
+                # stream.time_stamps = stream.time_stamps[::30]
+
+                stream.time_series = np.concatenate(stream.time_series)
+                # stream.time_stamps = stream.time_stamps
 
                 # print(len(stream.time_series))
 

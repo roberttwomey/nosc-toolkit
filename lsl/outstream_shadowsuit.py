@@ -1,5 +1,5 @@
 #
-# outstream_shadow.py
+# outstream_shadowsuit.py
 #
 # streams a single shadow suit to LSL
 # to do: update for multiple shadow suits
@@ -21,6 +21,7 @@ def shadow_client(host, port, lsl_outlet):
     sys.stdout.flush()
 
     sys.stdout.write("connected to %s:%d\n" % (host, port))
+    sys.stdout.flush()
 
     if PortConfigurable == port:
         # xml_string = \
@@ -41,9 +42,11 @@ def shadow_client(host, port, lsl_outlet):
         if client.writeData(xml_string):
             sys.stdout.write("Sent active channel definition to Configurable service...\n")
 
+    sys.stdout.flush()
 
     if client.waitForData():
-        sys.stdout.write("Waiting for data...")
+    
+        sys.stdout.write("Streaming shadow data...")
         sys.stdout.flush()
         while True:
             data = client.readData()
@@ -79,8 +82,8 @@ def main(argv):
 
 
     sys.stdout.write("\n=== outstream_shadowsuit.py ===\n\n")
+    sys.stdout.flush()
 
-    
     # Setup outlet stream infos
     mocap_channels = 32
     sample_size = 8
