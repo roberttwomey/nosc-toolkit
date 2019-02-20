@@ -11,6 +11,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 from matplotlib.widgets import Slider
 from matplotlib import colors as mcolors
+from pylsl import StreamInfo, StreamOutlet
 
 matplotlib.use('TkAgg')
 
@@ -20,6 +21,20 @@ TICK_FREQ = 10
 
 VIDEO_WIDTH = 160 #320
 VIDEO_HEIGHT = 120 #240
+
+# video capture size and channels
+WC_WIDTH = 160
+WC_HEIGHT = 120
+WC_CHNS = 3
+
+# videi capture sample intervals in ms
+HIGH_FRAMERATE = 33
+LOW_FRAMERATE = 1000
+
+# initial conditions, capture at high fram rate
+SAMPLE_RATE = HIGH_FRAMERATE
+DURATION_HIGH_FRAMERATE_SEC = 30.0
+DURATION_HIGH_FRAMERATE = (1.0 / SAMPLE_RATE) * DURATION_HIGH_FRAMERATE_SEC * 1000
 
 def fig2rgb_array(fig):
     fig.canvas.draw()
@@ -175,7 +190,8 @@ class App():
             self.data_all.append((
                 sub_stream['time_series'], 
                 sub_stream['time_stamps'], 
-                sub_stream['info']['desc'][0]['channels'][0].keys()))
+                sub_stream['info']['desc'][0]['channels'][0].keys(),
+                sub_stream['info']['name'][0])) # Record device name in the data
 
         # exit()
 
@@ -249,6 +265,38 @@ class App():
         # create progress slider for video
         self.w_video_progress = tk.Scale(self.frame_video_progress, from_=0, to=100, orient=tk.HORIZONTAL, command=self.handle_progress_change, length=400)
         self.w_video_progress.pack(side=tk.LEFT)
+
+        '''
+        Set up lsl stream before frame update
+        '''
+        # Outstream hrv
+        # Setup outlet stream infos
+        stream_info_hrv = StreamInfo('HRV', 'EEG', CHNS_HRV, SAMPLE_RATE, 'float32', 'hrvid_1')
+        channels = stream_info_hrv.desc().append_child("channels")
+        channels.append_child('rr')
+        # Create outlets
+        self.outlet_hrv = StreamOutlet(stream_info_hrv)
+
+        # Outstream the shadowsuit
+        stream_info_mocap = StreamInfo('ShadowSuit', 'MOCAP', mocap_channels * sample_size, 200)
+        channels = stream_info_mocap.desc().append_child("channels")
+        channel_list = ["lq0", "lq1", "lq2", "lq3",
+            "c0", "c1", "c2", "c3"]
+        for c in channel_list:
+            channels.append_child(c) 
+        # Create outlets
+        self.outlet_mocap = StreamOutlet(stream_info_mocap)
+
+        # frame counts to keep track of which frame is updating
+        self.web_framecount = 0
+        # Outstream the webcam
+        stream_info_webcam = StreamInfo('Webcam', 'Experiment', WC_WIDTH * 
+        WC_HEIGHT * WC_CHNS, SAMPLE_RATE, 'int32', 'webcamid_1')
+        # Create webcam outstream
+        self.outlet_webcam = StreamOutlet(stream_info_webcam)
+        '''
+        End lsl stream update
+        '''
 
         # set first frame
         self.update_frame()
@@ -383,7 +431,9 @@ class App():
             nearest_value = sub_stream[0][nearest_index]
 
             # output substream values at nearest time
-            print(video_time, nearest_time, nearest_index, nearest_value)   
+            print(video_time, nearest_time, nearest_index, nearest_value)
+
+            return video_time, nearest_time, nearest_index, nearest_value   
 
     def update_frame(self):
 
@@ -404,12 +454,70 @@ class App():
             self.tracklines[i] = place_trackline(self.axes[i], self.tracklines[i], line_loc)
         
         # print(self.frame_index)
+        video_time, nearest_time, nearest_index, nearest_value = 
         self.output_current_data(line_loc)
 
         self.fig.canvas.draw_idle()
 
+        '''
+        Put data to LSL inlets every time when the frame is updated
+        '''
+        self.outstream_webcam(frame)
+        self.outstream_shadowsuit(nearest_value)
+        self.outstream_muse()
+        self.outstream_hrv()
+        self.outstream_audio()
+        '''
+        End stream
+        '''
+
+
         return frame
 
+    def outstream_webcam(self, frame):
+        self.outlet_webcam.push_sample(frame.flatten())
+
+        self.web_framecount += 1
+        if self.web_framecount > DURATION_HIGH_FRAMERATE and SAMPLE_RATE == HIGH_FRAMERATE:
+            sys.stdout.write("{} frames elapsed.\n".format(framecount))
+            sys.stdout.write("Switching to low framerate...\n")
+            SAMPLE_RATE = LOW_FRAMERATE
+      
+        # with opencv 3.4, you can not change capture framerate directly
+        # you control fps by changing a waitkey delay to set frame rate
+        # see here: https://stackoverflow.com/questions/52068277/change-frame-rate-in-opencv-3-4-2
+        key = cv2.waitKey(SAMPLE_RATE) ## why is SAMPLE_RATE here?
+
+    def outstream_shadowsuit(self, nearest_value):
+        data = nearest_value
+        if data == None:
+            return
+
+        new_sample = []
+
+        container = Format.Configurable(data)
+        for key in container:
+            line = "data({}) = (".format(key)
+            for i in range(container[key].size()):
+                element = container[key].value(i)
+                new_sample.append(element)
+                if i > 0:
+                    line += ", "
+                line += "{}".format(element)
+            line += ")"
+            if doPrint:
+                print(line)
+
+        self.outlet_mocap.push_sample(new_sample) 
+    
+    def outstream_muse(self):
+        pass
+    
+    def outstream_hrv(self):
+        body_json = self.rfile.read(int(self.headers['Content-Length']))
+        body = json.loads(body_json)
+        new_sample = [body['logs'][0]['rr']]
+        self.outlet_hrv.push_sample(new_sample)
 
 if __name__ == "__main__":
     newApp = App(sys.argv[1])
