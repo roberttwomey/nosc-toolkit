@@ -12,6 +12,7 @@ from collections import OrderedDict, defaultdict
 from tempfile import mkdtemp
 import numpy as np
 import os.path as path
+import sys
 
 __all__ = ['load_xdf']
 __version__ = '1.14.0'
@@ -338,15 +339,17 @@ def load_xdf(filename,
             if stream.fmt == 'string':
                 stream.time_series = list(itertools.chain(*stream.time_series))
             else:
-                # ROBERT SAYS: this line gives me an out of memory error:
-                # print(len(stream.time_series))
-
+                print(len(stream.time_series))
+                print("memory size {}".format(sys.getsizeof(stream.time_series)))
+                print(stream.time_series[:10])
+                print(stream.time_series[0].shape)
                 # slice arrays to grab every 30th frame, e.g. 1 fps
                 # stream.time_series = np.concatenate(stream.time_series[::30])
                 # stream.time_stamps = stream.time_stamps[::30]
 
+                # ROBERT SAYS: this line gives me an out of memory error:
                 stream.time_series = np.concatenate(stream.time_series)
-                # stream.time_stamps = stream.time_stamps
+                stream.time_stamps = stream.time_stamps
 
                 # print(len(stream.time_series))
 
@@ -561,6 +564,7 @@ def _jitter_removal(streams,
                     indices = np.arange(range_i[0], range_i[1]+1, 1)
                     tmp_duration = len(indices)
                     num_samples.append(tmp_duration)
+                    # np.append(num_samples, tmp_duration)
                     duration = (stream.time_stamps[range_i[1]] -
                                 stream.time_stamps[range_i[0]])
                     effective_srate.append(tmp_duration/duration)

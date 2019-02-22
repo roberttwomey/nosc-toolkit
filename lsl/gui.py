@@ -102,7 +102,22 @@ def create_wave_plot(ax, samples, timestamps, channels):
 
     # Set the yticks to use axes coordinates on the y axis
     ax.set_yticks(ticklocs)
-    ax.set_yticklabels(channels)
+    
+    # print(channels)
+    
+    # i = 0
+    # for channel in channels:
+    #     print("{} {}".format(i,channel["ar0"]))
+    #     i = i + 1
+    # print(channels[0].keys())
+    # exit()
+    # ax.set_yticklabels(channels)
+    ax.legend(channels[0].keys())
+
+    # channelnames = []
+    # for cname in channels[0].keys():
+        # channelnames.append(cname)
+    # ax.legend(lines, channels[0].keys())
 
 # places the track line onto the graphs
 def place_trackline(ax, trackline, pos):
