@@ -68,7 +68,7 @@ def shadow_client(host, port, lsl_outlet):
                 if doPrint:
                     print(line)
 
-            lsl_outlet.push_sample(new_sample)                    
+            lsl_outlet.push_sample(new_sample)                  
     else:
         print("Client not configured properly...exiting.")
 
