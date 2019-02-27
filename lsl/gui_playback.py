@@ -243,7 +243,6 @@ class App():
         '''
         Create video objects
         '''
-
         # buffer video
         self.frame_buffer = np.uint8(np.array(self.data_video).reshape(-1, VIDEO_HEIGHT, VIDEO_WIDTH, 3))
         print("VIDEO LEN " + str(len(self.frame_buffer)))
@@ -504,6 +503,13 @@ class App():
         return frame
 
     def outstream_webcam(self, frame):
+        # Check whether the channel count is the same as sample length
+        # if not, return an error
+        if len(frame.flatten()) != self.outlet_webcam.channel_count:
+            raise ValueError('The number of channels from Webcam data is ' + 
+            'not the same as expected. There should be ' + 
+            self.outlet_webcam.channel_count + 'channels, ' + 
+            'but the actual value is', len(new_sample))
         self.outlet_webcam.push_sample(frame.flatten())
 
     def outstream_muse(self, output):
@@ -517,6 +523,12 @@ class App():
                 break
         if found is False:
             return
+        # Check whether the channel count is the same as sample length
+        # if not, return an error
+        if len(new_sample) != self.outlet_muse.channel_count:
+            raise ValueError('The number of channels from Muse data is ' + 
+            'not the same as expected. There should be 22 channels, ' + 
+            'but the actual value is', len(new_sample))
         # push the found data into the outstream
         self.outlet_muse.push_sample(new_sample)
     
@@ -531,6 +543,12 @@ class App():
                 break
         if found is False:
             return
+        # Check whether the channel count is the same as sample length
+        # if not, return an error
+        if len(new_sample) != self.outlet_hrv.channel_count:
+            raise ValueError('The number of channels from Polar data is ' + 
+            'not the same as expected. There should be 2 channels, ' + 
+            'but the actual value is', len(new_sample))
         # push the found data into the outstream
         self.outlet_hrv.push_sample(new_sample)
 
@@ -545,6 +563,12 @@ class App():
                 break
         if found is False:
             return
+        # Check whether the channel count is the same as sample length
+        # if not, return an error
+        if len(new_sample) != self.outlet_mocap.channel_count:
+            raise ValueError('The number of channels from Shadow Suit data is ' + 
+            'not the same as expected. There should be 8 channels, ' + 
+            'but the actual value is', len(new_sample))
         # push the found data into the outstream
         self.outlet_mocap.push_sample(new_sample) 
     
