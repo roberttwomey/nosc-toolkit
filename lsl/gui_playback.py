@@ -41,7 +41,7 @@ MUSE_SAMPLE_RATE = 10
 CHNS_MUSE = 22
 
 # HRV constants
-CHNS_HRV = 1
+CHNS_HRV = 2
 HRV_SAMPLE_RATE = 10
 
 # Shadowsuit constants
@@ -300,6 +300,7 @@ class App():
         # Setup outlet stream infos
         stream_info_hrv = StreamInfo('HRV', 'EEG', CHNS_HRV, HRV_SAMPLE_RATE, 'float32', 'hrvid_1')
         channels = stream_info_hrv.desc().append_child("channels")
+        channels.append_child('hr')
         channels.append_child('rr')
         # Create outlets
         self.outlet_hrv = StreamOutlet(stream_info_hrv)
@@ -487,7 +488,6 @@ class App():
         
         # print(self.frame_index)
         self.output = self.output_current_data(line_loc)
-        # self.output = enumerate(self.output)
 
         self.fig.canvas.draw_idle()
 
@@ -506,54 +506,48 @@ class App():
     def outstream_webcam(self, frame):
         self.outlet_webcam.push_sample(frame.flatten())
 
-        # self.web_framecount += 1
-        # if self.web_framecount > DURATION_HIGH_FRAMERATE and SAMPLE_RATE == HIGH_FRAMERATE:
-        #     sys.stdout.write("{} frames elapsed.\n".format(framecount))
-        #     sys.stdout.write("Switching to low framerate...\n")
-        #     SAMPLE_RATE = LOW_FRAMERATE
-      
-        # # with opencv 3.4, you can not change capture framerate directly
-        # # you control fps by changing a waitkey delay to set frame rate
-        # # see here: https://stackoverflow.com/questions/52068277/change-frame-rate-in-opencv-3-4-2
-        # key = cv2.waitKey(SAMPLE_RATE) ## why is SAMPLE_RATE here?
-
     def outstream_muse(self, output):
-        print("=====================muse values:", self.output[0][0])
-        new_sample = self.output[0][0]
+        # find the muse data from output list
+        new_sample = []
+        found = False
+        for device in self.output:
+            if device[1] == 'Muse':
+                new_sample = device[0]
+                found = True
+                break
+        if found is False:
+            return
+        # push the found data into the outstream
         self.outlet_muse.push_sample(new_sample)
     
     def outstream_hrv(self, output):
-        # body_json = self.rfile.read(int(self.headers['Content-Length']))
-        # body = json.loads(body_json)
-        # new_sample = [body['logs'][0]['rr']]
-        # self.outlet_hrv.push_sample(new_sample)
-        new_sample = self.output[1][0]
+        # find the hrv data from output list
+        new_sample = []
+        found = False
+        for device in self.output:
+            if device[1] == 'Polar':
+                new_sample = device[0]
+                found = True
+                break
+        if found is False:
+            return
+        # push the found data into the outstream
         self.outlet_hrv.push_sample(new_sample)
 
     def outstream_shadowsuit(self, output):
-        data = self.output[2][0]
-        self.outlet_mocap.push_sample(data) 
-        # if data == None:
-        #     return
-
-        # new_sample = []
-
-        # container = Format.Configurable(data)
-        # for key in container:
-        #     line = "data({}) = (".format(key)
-        #     for i in range(container[key].size()):
-        #         element = container[key].value(i)
-        #         new_sample.append(element)
-        #         if i > 0:
-        #             line += ", "
-        #         line += "{}".format(element)
-        #     line += ")"
-        #     if doPrint:
-        #         print(line)
-
-        # self.outlet_mocap.push_sample(new_sample) 
+        # find the shadowsuit data from output list
+        new_sample = []
+        found = False
+        for device in self.output:
+            if device[1] == "ShadowSuit":
+                new_sample = device[0]
+                found = True
+                break
+        if found is False:
+            return
+        # push the found data into the outstream
+        self.outlet_mocap.push_sample(new_sample) 
     
-
 
 if __name__ == "__main__":
     newApp = App(sys.argv[1])
