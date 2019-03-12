@@ -24,12 +24,4 @@ public class Graph
         }
 
     }
-
-    public void updateGraph(float[] samples)
-    {
-        for (int i=0; i<number_of_channels; i++)
-        {
-            lines[i].runLive(samples[i]);
-        }
-    }
 }

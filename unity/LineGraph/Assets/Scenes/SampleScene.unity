@@ -676,7 +676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &693099280
 RectTransform:
   m_ObjectHideFlags: 0
@@ -882,6 +882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1486440598}
   - component: {fileID: 1486440599}
+  - component: {fileID: 1486440600}
   m_Layer: 5
   m_Name: Muse
   m_TagString: Untagged
@@ -924,8 +925,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StreamName: Muse
   StreamType: EEG
+  number_of_channels: 8
+  interval: 1
+  yMaximum: 1.2
+  pointLimit: 200
+  circleSprite: {fileID: 0}
+--- !u!114 &1486440600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486440597}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4bc38b90a1d46c4fa166adbe01dabb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number_of_channels: 3
   yMaximum: 1
-  pointLimit: 100
+  pointLimit: 20
   circleSprite: {fileID: 0}
 --- !u!1 &1651507674
 GameObject:
